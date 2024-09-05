@@ -1,11 +1,10 @@
-
 import React, { Component } from 'react';
 import { View, Text, StyleSheet ,StatusBar,Image, TouchableOpacity} from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
-
-    const Splash = ({navigation}) => {
+const Splash = ({navigation}) => {
         const handlePress = () => {
+        
             navigation.navigate('Login');
         };
     return (

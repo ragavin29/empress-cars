@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignUpScreen from './src/Screens/SignUp';
 import Splash from './src/Screens/Splash';
 import Login from './src/Screens/Login';
 
@@ -13,6 +14,7 @@ function App() {
       <Stack.Navigator initialRouteName='Splash'>
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
         <Stack.Screen  options={{ headerShown: false }} name="Login" component={Login} />
+        <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
       </Stack.Navigator>
 
      

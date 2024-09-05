@@ -5,6 +5,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import axios from 'axios';
 
 const Login = ({navigation}) => {
+
   
     return (
       <KeyboardAvoidingView
@@ -47,7 +48,7 @@ const Login = ({navigation}) => {
                 <Image style={{...styles.googlelogo,width:responsiveWidth(11),height:responsiveHeight(5.6)}} source={require('../assets/images/google.png')} />
             </View>
 
-            <Text style={styles.newhere}>
+            <Text onPress={()=>navigation.navigate("SignUp")} style={styles.newhere}>
                     New here? <Text style={styles.underlineText}>Join the elite</Text>
             </Text>
         </KeyboardAvoidingView>
