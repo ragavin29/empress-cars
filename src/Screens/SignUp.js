@@ -15,7 +15,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/action';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -24,16 +24,21 @@ const SignUpScreen = () => {
   const [mobile, setMobile] = useState("");
   const dispatch = useDispatch();
 
-  const registerHandler = () => {
+  const registerHandler = async () => {
     const myForm = {
       username,
       firstName,
       lastName,
       password,
       email,
-      mobile,
+      mobile
     };
-    dispatch(register(myForm));
+    try {
+      await dispatch(register(myForm)); 
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

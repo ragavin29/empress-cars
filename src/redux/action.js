@@ -18,11 +18,11 @@ export const register = (formData) => async (dispatch) => {
         );
         console.log("Data is", data);
         dispatch(registerSuccess(data.message));
-        showToast('success', 'Register Successful', 'You are now registered');
+        showToast('success', data.message, 'You are now registered');
     } catch (error) {
         console.log("Error", error.response?.data || error.message);
         dispatch(registerFailure());
-        showToast('error', 'Register Error', 'Please try again');
+        showToast('error', error.message, 'Please try again');
     
     }
 };
