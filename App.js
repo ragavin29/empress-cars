@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpScreen from './src/Screens/SignUp';
 import Splash from './src/Screens/Splash';
 import Login from './src/Screens/Login';
+import Home from './src/Screens/Home';
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 function App() {
@@ -15,8 +17,10 @@ function App() {
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
         <Stack.Screen  options={{ headerShown: false }} name="Login" component={Login} />
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
+     
       </Stack.Navigator>
-
+      <Toast />
      
     </NavigationContainer>
   );

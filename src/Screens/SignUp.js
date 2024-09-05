@@ -1,33 +1,110 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
-// import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { useDispatch } from 'react-redux';
+import { register } from '../redux/action';
+
 const SignUpScreen = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [mobile, setMobile] = useState("");
+  const dispatch = useDispatch();
+
+  const registerHandler = () => {
+    const myForm = {
+      username,
+      firstName,
+      lastName,
+      password,
+      email,
+      mobile,
+    };
+    dispatch(register(myForm));
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="chevron-back" size={24} color="#FFD700" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Sign Up Yourself !</Text>
-      </View>
-      <View style={styles.carContainer}>
-        <View style={styles.car} />
-      </View>
-      <Text style={styles.title}>Sign Up</Text>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#888" />
-        <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#888" secureTextEntry />
-        <TextInput style={styles.input} placeholder="First Name" placeholderTextColor="#888" />
-        <TextInput style={styles.input} placeholder="Last Name" placeholderTextColor="#888" />
-        <TextInput style={styles.input} placeholder="Location" placeholderTextColor="#888" />
-        <TextInput style={styles.input} placeholder="Mobile" placeholderTextColor="#888" keyboardType="phone-pad" />
-      </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.header}>
+            <TouchableOpacity>
+              <Ionicons name="chevron-back" size={24} color="#FFD700" />
+            </TouchableOpacity>
+            <Text style={styles.headerText}>Sign Up Yourself!</Text>
+          </View>
+          <View style={styles.carContainer}>
+            <View style={styles.car} />
+          </View>
+          <Text style={styles.title}>Sign Up</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="User Name"
+              placeholderTextColor="#888"
+              value={username}
+              onChangeText={setUsername}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#888"
+              value={email}
+              onChangeText={setEmail}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              placeholderTextColor="#888"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="First Name"
+              placeholderTextColor="#888"
+              value={firstName}
+              onChangeText={setFirstName}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Last Name"
+              placeholderTextColor="#888"
+              value={lastName}
+              onChangeText={setLastName}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Mobile"
+              placeholderTextColor="#888"
+              value={mobile}
+              onChangeText={setMobile}
+              keyboardType="phone-pad"
+            />
+          </View>
+          <TouchableOpacity style={styles.button} onPress={registerHandler}>
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -35,58 +112,59 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-    padding: 20,
+  },
+  scrollContainer: {
+    padding: responsiveWidth(5),
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: responsiveHeight(3),
   },
   headerText: {
     color: '#FFD700',
-    fontSize: 28,
-    marginLeft: 10,
+    fontSize: responsiveFontSize(3),
+    marginLeft: responsiveWidth(2),
   },
   carContainer: {
-    height: 50,
+    height: responsiveHeight(7),
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: responsiveHeight(3),
   },
   car: {
-    width: 50,
-    height: 20,
+    width: responsiveWidth(10),
+    height: responsiveHeight(3),
     backgroundColor: '#FFF',
     borderRadius: 5,
   },
   title: {
     color: '#FFF',
-    fontSize: 24,
+    fontSize: responsiveFontSize(3),
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: responsiveHeight(2),
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: responsiveHeight(2),
   },
   input: {
     backgroundColor: '#333',
     borderRadius: 50,
-    padding: 15,
-    marginBottom: 10,
+    padding: responsiveWidth(3),
+    marginBottom: responsiveHeight(1),
     color: '#FFF',
-    
+    fontSize: responsiveFontSize(2),
   },
   button: {
     backgroundColor: '#ebc832',
-        padding: 10,
-        height: responsiveHeight(6),
-        width: responsiveWidth(85),
-        borderRadius: 30,
-        justifyContent: 'center',  
-        alignItems: 'center',   
+    padding: responsiveHeight(1.5),
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'black',
   },
   buttonText: {
     color: '#000',
-    fontSize: 16,
+    fontSize: responsiveFontSize(2),
     fontWeight: 'bold',
   },
 });
