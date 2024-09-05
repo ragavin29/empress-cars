@@ -2,7 +2,10 @@
 import React, { Component } from 'react';
 import { View, Text, Image,StyleSheet, TouchableOpacity,TextInput ,Platform,KeyboardAvoidingView} from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import axios from 'axios';
+
 const Login = ({navigation}) => {
+  
     return (
       <KeyboardAvoidingView
       style={styles.container}
