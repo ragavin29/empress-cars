@@ -215,7 +215,7 @@ const Login = ({ navigation }) => {
       
      
         <Text style={styles.newhere}>
-          New here? <Text  onPress={() => navigation.navigate('Home')} style={styles.underlineText}>Join the elite</Text>
+          New here? <Text  onPress={() => navigation.navigate('SignUp')} style={styles.underlineText}>Join the elite</Text>
         </Text>
      
 
