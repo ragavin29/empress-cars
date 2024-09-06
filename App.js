@@ -15,10 +15,11 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Splash'>
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
-        <Stack.Screen  options={{ headerShown: false }} name="Login" component={Login} />
+
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
         <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
-     
+    
+        <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
       </Stack.Navigator>
       <Toast />
      
