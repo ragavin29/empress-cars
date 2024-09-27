@@ -3,7 +3,6 @@ import { View,FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react-
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { useSelector } from 'react-redux';
 
-<<<<<<< HEAD
 const servicesData = [
   {
     id: '1',
@@ -36,13 +35,8 @@ const renderServiceItem = ({ item }) => (
 );
 
 const Home = () => {
-=======
-const Home = ({navigation}) => {
-  
-  const {user}=useSelector((state)=>state.auth);
-
-  console.log("User from Empress Lgo",user)
->>>>>>> 3f6222f71f75bbc586fe654ffa3d7c8b4e232ef5
+  const { user, loading } = useSelector((state) => state.auth);
+  console.log("Use ros",user);
   return (
     <View style={styles.container}>     
       <Image
@@ -53,15 +47,6 @@ const Home = ({navigation}) => {
         <Text style={styles.helloText}>Hello {user?.firstName}</Text>
         <Text style={styles.helloText}>Explore our Services</Text>
         </View>
-<<<<<<< HEAD
-        <View>
-        <Image
-          source={require('../assets/images/profile.png')}
-          style={styles.profileImage}
-        />
-        </View>
-      
-=======
         <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
         <Image 
  source={{ uri: user?.profile }}
@@ -69,7 +54,6 @@ const Home = ({navigation}) => {
         />
         </TouchableOpacity>
         
->>>>>>> 3f6222f71f75bbc586fe654ffa3d7c8b4e232ef5
       </View>
 
       
