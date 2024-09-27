@@ -38,13 +38,13 @@ const styles = StyleSheet.create({
     },
     textcontainer:{
          alignSelf:'center',
-         position:'absolute'
+         position:'absolute',
     },
     text:{       
         alignSelf:'center',
         color:'white',
         fontSize:responsiveFontSize(4),
-        fontWeight:'bold'
+        // fontWeight:'bold'
     },
     buttoncontainer:{
         backgroundColor: '#ebc832',

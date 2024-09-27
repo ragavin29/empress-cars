@@ -3,12 +3,16 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput, Platform, K
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import axios from 'axios';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../redux/action';
 
 GoogleSignin.configure({
   webClientId: 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com', // Replace with your client ID
 });
 
 const Login = ({ navigation }) => {
+  const dispatch=useDispatch();
+  const { error } = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -61,34 +65,39 @@ const Login = ({ navigation }) => {
     }
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('http://13.60.25.121/api/test/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+  const handleLogin =  () => {
+    console.log("Hanlde Login Called");
+    dispatch(login({ email, password }));
+    navigation.navigate('Home')
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
-      }
 
-      const data = await response.json();
-      Alert.alert('Login Success');
+    // try {
+    //   const response = await fetch('http://13.60.25.121/api/test/auth/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       email: email,
+    //       password: password,
+    //     }),
+    //   });
+
+    //   if (!response.ok) {
+    //     const errorData = await response.json();
+    //     throw new Error(errorData.message || 'Login failed');
+    //   }
+
+    //   const data = await response.json();
+    //   Alert.alert('Login Success');
     
-      console.log('Login successful:', data);
-      navigation.navigate('Home')
+    //   console.log('Login successful:', data);
+    //   navigation.navigate('Home')
 
-    } catch (error) {
-      console.error('Login error:', error);
-      Alert.alert('Login failed', error.message);
-    }
+    // } catch (error) {
+    //   console.error('Login error:', error);
+    //   Alert.alert('Login failed', error.message);
+    // }
   };
 
   const handleGenerateOtp = async () => {
@@ -161,7 +170,9 @@ const Login = ({ navigation }) => {
       Alert.alert('Password reset failed', error.message);
     }
   };
-
+if(error){
+  <View> Error os coming</View>
+}
   return (
     <KeyboardAvoidingView
       style={styles.container}
