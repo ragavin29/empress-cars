@@ -87,7 +87,14 @@ function App() {
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
         <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
     
-        <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
+   /////////////////////////////////
+   <Stack.Screen  options={{ headerShown: false }} name="Login" component={Login} />
+   <Stack.Screen  options={{ headerShown: false }} name="Profile" component={Profile} />
+        <Stack.Screen  options={{ headerShown: false }} name="AccountDetails" component={AccountDetails} />
+        <Stack.Screen  options={{ headerShown: false }} name="Limos" component={EmpressLimos} />
+        <Stack.Screen  options={{ headerShown: false }} name="Cars" component={CarRentalScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="Pickup" component={RideBookingScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="CarList" component={CarList} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>
