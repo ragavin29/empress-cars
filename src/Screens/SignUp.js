@@ -49,7 +49,7 @@ const SignUpScreen = ({navigation}) => {
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.header}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
               <Ionicons name="chevron-back" size={24} color="#FFD700" />
             </TouchableOpacity>
             <Text style={styles.headerText}>Sign Up Yourself!</Text>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { View,FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { useSelector } from 'react-redux';
 
+<<<<<<< HEAD
 const servicesData = [
   {
     id: '1',
@@ -34,6 +36,13 @@ const renderServiceItem = ({ item }) => (
 );
 
 const Home = () => {
+=======
+const Home = ({navigation}) => {
+  
+  const {user}=useSelector((state)=>state.auth);
+
+  console.log("User from Empress Lgo",user)
+>>>>>>> 3f6222f71f75bbc586fe654ffa3d7c8b4e232ef5
   return (
     <View style={styles.container}>     
       <Image
@@ -41,9 +50,10 @@ const Home = () => {
         style={styles.logo}/>      
       <View style={styles.profileContainer}>
         <View>
-        <Text style={styles.helloText}>Hello UserName</Text>
+        <Text style={styles.helloText}>Hello {user?.firstName}</Text>
         <Text style={styles.helloText}>Explore our Services</Text>
         </View>
+<<<<<<< HEAD
         <View>
         <Image
           source={require('../assets/images/profile.png')}
@@ -51,6 +61,15 @@ const Home = () => {
         />
         </View>
       
+=======
+        <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+        <Image 
+ source={{ uri: user?.profile }}
+          style={styles.profileImage}
+        />
+        </TouchableOpacity>
+        
+>>>>>>> 3f6222f71f75bbc586fe654ffa3d7c8b4e232ef5
       </View>
 
       
@@ -61,7 +80,7 @@ const Home = () => {
             style={styles.cardImage}
           />
           <Text style={{color:'white'}}>EMPRESS LIMOS</Text>
-          <TouchableOpacity style={styles.exploreButton}>
+          <TouchableOpacity onPress={()=>navigation.navigate('Limos')} style={styles.exploreButton}>
             <Text style={styles.exploreText}>Explore</Text>
           </TouchableOpacity>
         </View>

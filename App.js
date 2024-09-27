@@ -12,6 +12,13 @@ import Myservice from './src/Screens/Myservice';
 import Messages from './src/Screens/Messages';
 import MsgDetail from './src/Screens/MessageDetail';
 import Toast from 'react-native-toast-message';
+import Profile from './src/Screens/Profile';
+import AccountDetails from './src/components/Profile/AccountDetails';
+import EmpressLimos from './src/components/Empress Limos/EmpressLimos';
+import RideBookingScreen from './src/components/Empress Limos/PickUp';
+import CarRentalScreen from './src/components/Empress Limos/CarDetails/CarDetails';
+import CarList from './src/components/Empress Limos/CarList';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,34 +81,13 @@ function MyTabs() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Splash"
-          component={Splash}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="SignUp"
-          component={SignUpScreen}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Login"
-          component={Login}
-        />
-        {/* The home now has a tab navigator inside */}
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Home"
-          component={MyTabs}
-        />
-        {/* Any specific screen within the Home tab navigator */}
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="MsgDetail"
-          component={MsgDetail}
-        />
+      <Stack.Navigator initialRouteName='Splash'>
+        <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
+
+        <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
+    
+        <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>
