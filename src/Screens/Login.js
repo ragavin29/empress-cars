@@ -5,7 +5,7 @@ import axios from 'axios';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 GoogleSignin.configure({
-  webClientId: 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com', // Replace with your client ID
+  webClientId: '49134833476-nq1a3mragp34lpvhtubelr02f48i1fq1.apps.googleusercontent.com', // Replace with your client ID
 });
 
 const Login = ({ navigation }) => {
@@ -18,10 +18,9 @@ const Login = ({ navigation }) => {
   const [otpGenerated, setOtpGenerated] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
 
-  useEffect(() => {
-   
+  useEffect(() => {   
     GoogleSignin.configure({
-      webClientId: 'YOUR_WEB_CLIENT_ID.apps.googleusercontent.com',
+      webClientId: '49134833476-nq1a3mragp34lpvhtubelr02f48i1fq1.apps.googleusercontent.com',
     });
   }, []);
 
@@ -31,8 +30,8 @@ const Login = ({ navigation }) => {
       const userInfo = await GoogleSignin.signIn();
       const idToken = userInfo.idToken;
 
-      // Send the ID token to your backend
-      const response = await fetch('http://your-backend-url/auth/google', {
+     
+      const response = await fetch('/api/auth/googlelogin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,6 +56,7 @@ const Login = ({ navigation }) => {
         Alert.alert('Play Services not available');
       } else {
         Alert.alert('Google Sign-In error', error.message);
+        console.log('gooogle',error.message)
       }
     }
   };
