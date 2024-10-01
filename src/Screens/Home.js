@@ -34,7 +34,7 @@ const renderServiceItem = ({ item }) => (
 
 );
 
-const Home = () => {
+const Home = ({navigation}) => {
   const { user, loading } = useSelector((state) => state.auth);
   console.log("Use ros",user);
   return (

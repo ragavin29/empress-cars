@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Modal, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Image,StyleSheet, ScrollView, Modal, Button } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 const RideBookingScreen= () => {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
@@ -50,8 +51,16 @@ const navigation=useNavigation();
     <ScrollView style={styles.container}>
       {/* Map Icon & Pickup Section */}
       <View style={styles.pickupSection}>
+      <View style={{flexDirection:'row'}}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+         <Image source={require('../../assets/images/left.png')} style={styles.backButton} />
+
+       </TouchableOpacity>
+       <View style={{marginHorizontal:18}}>
         <Text style={styles.label}>Select your pick-up</Text>
         <Text style={styles.subLabel}>Luxury hotel or address</Text>
+      </View>
+       </View>
         {/* Place Map Icon Component */}
         {/* <View style={styles.mapMock} />
           <MapView
@@ -68,7 +77,7 @@ const navigation=useNavigation();
         <Marker coordinate={{ latitude: 37.78885, longitude: -122.4394 }} />
       </MapView> */}
       </View>
-
+      <Image source={require('../../assets/images/map.png')} style={styles.map} />
       <TouchableOpacity onPress={showDatePicker} style={styles.dateButton}>
         <Text style={styles.label}>Pick-up</Text>
         <Text style={styles.subLabel}>{date ? date.toDateString() : "Select Date"}</Text>
@@ -176,7 +185,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   label: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#fff', 
   },
@@ -208,6 +217,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
+    borderColor: '#ebc832',
+    borderStyle: 'solid',
+    borderWidth: 3,
     backgroundColor: 'black',
     margin: 20,
     padding: 20,
@@ -240,7 +252,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   buttonText: {
-    color: 'yellow',
+    color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
     
@@ -263,18 +275,31 @@ const styles = StyleSheet.create({
   },
 
   confirmButton: {
-    backgroundColor: 'yellow',  
+    backgroundColor: '#FFC107',  
     borderRadius: 30,      
     paddingVertical: 12,        
     paddingHorizontal: 24,      
     alignItems: 'center',      
     marginTop: 20,
+    
+   
   },
   confirmText: {
     color: 'black',             
     fontSize: 16,               
     fontWeight: 'bold',         
   },
+  backButton: {
+    height: responsiveHeight(4),
+    width: responsiveWidth(4),
+   
+},
+map:{
+ height: responsiveHeight(28),
+ width:responsiveWidth(80),
+ alignSelf:'center',
+ borderRadius:12
+}
 });
 
 export default RideBookingScreen;

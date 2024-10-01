@@ -4,15 +4,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 export default function EmpressLimos() {
   const navigation = useNavigation();
   const {user}=useSelector((state)=>state.auth);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Icon name="left" size={24} color="yellow" />
-        </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+         <Image source={require('../../assets/images/left.png')} style={styles.backButton} />
+
+       </TouchableOpacity>
         <Text style={styles.logoText}>EMPRESS LIMOS</Text>
         <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
         <Image
@@ -65,6 +67,10 @@ export default function EmpressLimos() {
           <Text style={styles.buttonText}>Rental Cars</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity   style={styles.contactButton} >
+  <Text style={styles.contactText}>Contact Us</Text>
+</TouchableOpacity>
+
     </ScrollView>
   );
 }
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 15,
     backgroundColor: '#1E1E1E',
-    borderRadius: 8,
+    borderRadius: 12,
   },
   aboutTitle: {
     fontSize: 18,
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
     width: '45%',
     backgroundColor: '#1E1E1E',
     padding: 20,
-    borderRadius: 8,
+    borderRadius: 22,
     alignItems: 'center',
     marginBottom: 20,
   },
@@ -153,4 +159,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 14,
   },
+  backButton: {
+    height: responsiveHeight(4),
+    width: responsiveWidth(4),
+},
+contactButton: {
+  backgroundColor: '#FFC107',  
+  borderRadius: 30,      
+  paddingVertical: 12,        
+  paddingHorizontal: 24,      
+  alignItems: 'center',      
+  marginTop: 20,
+},
+contactText: {
+  color: 'black',             
+  fontSize: 16,               
+  fontWeight: 'bold',         
+},
 });

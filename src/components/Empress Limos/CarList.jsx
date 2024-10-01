@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { ScrollView, StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
 import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import TopBar from './ui/TopBar';
 
-const carData = [
-  { id: 1, name: 'Mercedes-Benz S-Class', type: 'Sedan', price: '$200/day', image: 'https://cdn.pixabay.com/photo/2023/02/07/17/49/supercar-7774683_640.jpg' },
-  { id: 2, name: 'Range Rover Velar', type: 'SUV', price: '$250/day', image: 'https://cdn.pixabay.com/photo/2023/02/07/17/49/supercar-7774683_640.jpg' },
-  { id: 3, name: 'Ferrari 488 Spider', type: 'Luxury', price: '$500/day', image:  'https://cdn.pixabay.com/photo/2023/02/07/17/49/supercar-7774683_640.jpg'},
-];
-
-const CarItem = ({ car, isFavorite, onToggleFavorite }) => (
-  <View style={styles.carItem}>
-<Image source={{uri: car.image}} style={styles.carImage} />
+const CarItem = ({ car, isFavorite, onToggleFavorite, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.carItem}>
+    <Image source={{ uri: car.vehicleImages[0] }} style={styles.carImage} />
     <View style={styles.carInfo}>
-      <Text style={styles.carName}>{car.name}</Text>
-      <Text style={styles.carType}>{`${car.type} - ${car.price}`}</Text>
+      <Text style={styles.carName}>{`${car.make} ${car.model}`}</Text>
+      <Text style={styles.carType}>{`${car.cabType} - ${car.rentPerKm}$/km`}</Text>
     </View>
-    <TouchableOpacity onPress={() => onToggleFavorite(car.id)} style={styles.favoriteButton}>
+    <TouchableOpacity onPress={() => onToggleFavorite(car._id)} style={styles.favoriteButton}>
       <Text style={[styles.heartIcon, isFavorite && styles.heartIconFilled]}>♥</Text>
     </TouchableOpacity>
-  </View>
+  </TouchableOpacity>
 );
 
-export default function CarList() {
+export default function CarList({ navigation }) {
   const [search, setSearch] = useState('');
   const [favorites, setFavorites] = useState({});
+  const [carData, setCarData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://13.235.17.41/api/test/user/cabs/available')
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          setCarData(data.availableCabs);
+        }
+      })
+      .catch(error => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
 
   const toggleFavorite = (id) => {
     setFavorites(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const filteredCars = carData.filter(car => 
-    car.name.toLowerCase().includes(search.toLowerCase()) ||
-    car.type.toLowerCase().includes(search.toLowerCase())
+  const filteredCars = carData.filter(car =>
+    `${car.make} ${car.model}`.toLowerCase().includes(search.toLowerCase()) ||
+    car.cabType.toLowerCase().includes(search.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FFD700" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <TopBar/>
+      <TopBar />
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <TextInput
@@ -51,8 +67,8 @@ export default function CarList() {
           />
           <View style={styles.filterButtons}>
             {['Sedan', 'SUV', 'Luxury'].map((type) => (
-              <TouchableOpacity 
-                key={type} 
+              <TouchableOpacity
+                key={type}
                 style={styles.filterButton}
                 onPress={() => setSearch(type)}
               >
@@ -61,11 +77,12 @@ export default function CarList() {
             ))}
           </View>
           {filteredCars.map(car => (
-            <CarItem 
-              key={car.id} 
-              car={car} 
-              isFavorite={favorites[car.id]} 
+            <CarItem
+              key={car._id}
+              car={car}
+              isFavorite={favorites[car._id]}
               onToggleFavorite={toggleFavorite}
+              onPress={() => navigation.navigate('Cars', { car })}
             />
           ))}
         </ScrollView>
@@ -77,6 +94,12 @@ export default function CarList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'black',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'black',
   },
   scrollContainer: {
@@ -100,8 +123,9 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     backgroundColor: '#FFD700',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    color:'white',
+    paddingVertical: 10,
+    paddingHorizontal: 32,
     borderRadius: 20,
   },
   filterButtonText: {

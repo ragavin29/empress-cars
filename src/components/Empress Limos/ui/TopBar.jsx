@@ -12,7 +12,7 @@ const TopBar = () => {
         <Icon name="left" size={24} color="yellow" />
       </TouchableOpacity>
 
-      <Text style={styles.headingStyle}>EMPRESS</Text>
+      <Text style={styles.headingStyle}>EMPRESS Limos</Text>
     </View>
   );
 };
@@ -22,20 +22,21 @@ export default TopBar;
 const styles = StyleSheet.create({
   topContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: responsiveWidth(5),
     marginTop: 14,
-    backgroundColor: '#71797E', 
+    backgroundColor: 'black', 
     padding:6
   },
   backButton: {
 
   },
   headingStyle: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#FFD700',   
     fontWeight: 'bold', 
-    textAlign: 'left',
+    marginHorizontal:20
+   
   },
 });

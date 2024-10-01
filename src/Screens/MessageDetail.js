@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { responsiveHeight, responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const Messages = ({ navigation }) => {
+const MessageDetail = ({ navigation }) => {
     const messageContent = `Hello, we wanted to inform you about an important update regarding your service.Please note that we have scheduled your service for tomorrow at 10 AM.Make sure to confirm the appointment by replying to this message. 
     Additionally, check your email for detailed information and instructions. 
     
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Messages;
+export default MessageDetail;
