@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput, Platform, KeyboardAvoidingView, Alert, Modal } from 'react-native';
+import { View,SafeAreaView,ScrollView, Text, Image, StyleSheet, TouchableOpacity, TextInput, Platform, KeyboardAvoidingView, Alert, Modal } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import axios from 'axios';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
@@ -177,13 +177,16 @@ if(error){
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
+     >
+    
+   
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
       <View style={styles.topSection}>
         <Image style={styles.logo} source={require('../assets/images/logo.png')} />
         <Text style={styles.signintext}>Sign in to get luxury services</Text>
       </View>
 
-      <View style={{ alignSelf: 'center', marginTop: responsiveHeight(20) }}>
+      <View style={{ alignSelf: 'center', marginTop: responsiveHeight(35) }}>
         <View style={styles.input}>
           <TextInput
             style={styles.inputtext}
@@ -213,7 +216,7 @@ if(error){
         </TouchableOpacity>
       </View>
 
-      <View style={{ flexDirection: 'row', marginVertical: 20 }}>
+      <View style={{ flexDirection: 'row', marginVertical: 20 ,alignSelf:'center'}}>
         <View style={styles.horizontalLine} />
         <Text style={{ color: 'white', marginBottom: 10 }}>or</Text>
         <View style={styles.horizontalLine} />
@@ -288,7 +291,7 @@ if(error){
           </View>
         </View>
       </Modal>
-
+   </ScrollView>
     </KeyboardAvoidingView>
   );
 };
@@ -296,12 +299,13 @@ if(error){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black',
   },
   topSection: {
-    alignItems: 'center',
+    alignSelf: 'center',
     top: 10,
     marginVertical: 40,
     position: 'absolute'
@@ -364,6 +368,7 @@ const styles = StyleSheet.create({
     width:responsiveWidth(80),
     borderRadius: 10,
     padding: 10,
+    alignSelf:'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -373,6 +378,7 @@ const styles = StyleSheet.create({
   },
   newhere: {
     bottom: 0,
+    alignSelf:'center',
     position: 'absolute',
     color: 'white',
     fontSize: responsiveFontSize(2),
