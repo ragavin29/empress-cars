@@ -21,6 +21,9 @@ import CarList from './src/components/Empress Limos/CarList';
 import Bookingsummary from './src/Screens/Bookingsummary';
 import Payment from './src/Screens/PaymentScreen';
 import Lvmaintenance from './src/Screens/Servicesub';
+import Emergengyassit from './src/Screens/Emergencyassit';
+import VIPservices from './src/Screens/VIPconcierge';
+import PersonalizedEnhancements from './src/Screens/PersonalEnhancements';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,6 +106,9 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="book" component={Bookingsummary} />
         <Stack.Screen options={{ headerShown: false }} name="Payment" component={Payment} />
         <Stack.Screen options={{ headerShown: false }} name="lvm" component={Lvmaintenance} />
+        <Stack.Screen options={{ headerShown: false }} name="assit" component={Emergengyassit} />
+        <Stack.Screen options={{ headerShown: false }} name="vip" component={VIPservices} />
+        <Stack.Screen options={{ headerShown: false }} name="personal" component={PersonalizedEnhancements} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>
