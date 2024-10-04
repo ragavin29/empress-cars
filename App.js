@@ -20,6 +20,7 @@ import CarRentalScreen from './src/components/Empress Limos/CarDetails/CarDetail
 import CarList from './src/components/Empress Limos/CarList';
 import Bookingsummary from './src/Screens/Bookingsummary';
 import Payment from './src/Screens/PaymentScreen';
+import ServiceScreen from './src/components/Empress Services/ServiceScreen';
 import Lvmaintenance from './src/Screens/Servicesub';
 import Emergengyassit from './src/Screens/Emergencyassit';
 import VIPservices from './src/Screens/VIPconcierge';
@@ -86,7 +87,9 @@ function MyTabs() {
 function App() {
   return (
     <NavigationContainer>
+    
       <Stack.Navigator initialRouteName='Splash'>
+      <Stack.Screen  options={{ headerShown: false }} name="Service" component={ServiceScreen} />
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
 
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
