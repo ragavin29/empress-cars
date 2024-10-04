@@ -112,6 +112,7 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="assit" component={Emergengyassit} />
         <Stack.Screen options={{ headerShown: false }} name="vip" component={VIPservices} />
         <Stack.Screen options={{ headerShown: false }} name="personal" component={PersonalizedEnhancements} />
+        <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>

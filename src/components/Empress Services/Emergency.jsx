@@ -55,5 +55,6 @@ const styles = StyleSheet.create({
   button: {
     width: 80,
     paddingVertical: 5,
+    
   },
 });
