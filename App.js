@@ -25,6 +25,8 @@ import Lvmaintenance from './src/Screens/Servicesub';
 import Emergengyassit from './src/Screens/Emergencyassit';
 import VIPservices from './src/Screens/VIPconcierge';
 import PersonalizedEnhancements from './src/Screens/PersonalEnhancements';
+import Hospitality from './src/components/Empress Hospitality/Hospitality';
+import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -113,6 +115,8 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="vip" component={VIPservices} />
         <Stack.Screen options={{ headerShown: false }} name="personal" component={PersonalizedEnhancements} />
         <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} />
+        <Stack.Screen options={{ headerShown: false }} name="Hospitality" component={Hospitality} />
+        <Stack.Screen options={{ headerShown: false }} name="Hospitalitysub" component={Hospitalitysub} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>

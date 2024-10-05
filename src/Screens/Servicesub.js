@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         height: responsiveHeight(3),
-        width: responsiveWidth(6),
+        width: responsiveWidth(6.3),
         marginRight: 10,
     },
     featureText: {
@@ -257,9 +257,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     dropdown: {
-        width: responsiveWidth(4),
-        height: responsiveHeight(3),
-        marginLeft: 5,
+        width: responsiveWidth(3),
+        height: responsiveHeight(2),
+        marginLeft: 2,
+        marginRight:4
     },
 });
 

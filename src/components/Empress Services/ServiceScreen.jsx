@@ -8,16 +8,16 @@ import ServiceSlider from './ServiceSlider';
 import SearchBar from './SearchBar';
 import ServiceCard from './ServiceCard';
 
-export default function ServiceScreen() {
+export default function ServiceScreen({navigation}) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <Header />
       <SearchBar/>
 
       <ServiceSlider/>
-      <Emergency />
-      <ServiceCard/>
-      <VIPServices />
+      <Emergency navigation={navigation}/>
+      <ServiceCard navigation={navigation}/>
+      <VIPServices navigation={navigation} />
       <Categories />
     </ScrollView>
   );

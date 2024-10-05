@@ -1,20 +1,23 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
+
 const serviceData = [
   {
     id: '1',
     label: 'Personalized Enhancements',
     text: 'Tailored Interiors and Audio Systems',
     image: 'https://images.unsplash.com/photo-1674110997072-41f11b7d4ae7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyMDUzMDJ8MHwxfHNlYXJjaHw1fHxDdXN0b20lMjBWZWhpY2xlJTJDJTIwVXBncmFkZXN8ZW58MXx8fHwxNzI0OTA2Mzg0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-    buttonText: 'Upgrade Now'
+    buttonText: 'Upgrade Now',
+    navigationTarget: 'personal', 
   },
   {
     id: '2',
     label: 'Luxury Vehicles Maintenance',
     text: 'Top tier packages for luxury vehicles',
     image: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyMDUzMDJ8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXJ8ZW58MXx8fHwxNzI1MTgyNzk5fDA&ixlib=rb-4.0.3&q=80&w=1080',
-    buttonText: 'Book Now'
+    buttonText: 'Book Now',
+    navigationTarget: 'lvm', 
   },
 ];
 
@@ -24,7 +27,7 @@ const CTAButton = ({ text, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function ServiceCard() {
+export default function ServiceCard({ navigation }) {
   return (
     <View style={styles.container}>
       {serviceData.map((item) => (
@@ -33,7 +36,10 @@ export default function ServiceCard() {
           <View style={styles.contentContainer}>
             <Text style={styles.labelText}>{item.label}</Text>
             <Text style={styles.text}>{item.text}</Text>
-            <CTAButton text={item.buttonText} onPress={() => console.log(`${item.buttonText} pressed`)} />
+            <CTAButton 
+              text={item.buttonText} 
+              onPress={() => navigation.navigate(item.navigationTarget)} 
+            />
           </View>
         </View>
       ))}
@@ -43,7 +49,6 @@ export default function ServiceCard() {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: '#000',
     padding: 16,
   },
   cardContainer: {
@@ -58,7 +63,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 16,
-    // backgroundColor: 'rgba(0, 0, 0, 0.7)',
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -81,6 +85,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 20,
     alignSelf: 'flex-start',
+    marginVertical: 4,
   },
   buttonText: {
     color: '#000',

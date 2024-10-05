@@ -70,7 +70,7 @@ const Login = ({ navigation }) => {
     console.log("Email:", email, "Password:", password); // Log email and password
 
     try {
-        const response = await fetch('http://13.235.17.41/api/test/auth/login', {
+        const response = await fetch('http://3.110.210.20/api/test/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

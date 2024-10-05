@@ -2,14 +2,14 @@ import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import CTAButton from '../Empress Limos/ui/CTAButton';
 
-export default function Emergency() {
+export default function Emergency({navigation}) {
   return (
     <View style={styles.emergencyContainer}>
       <View style={styles.textContainer}>
         <Text style={styles.headText}>Emergency Assistance</Text>
         <Text style={styles.paraText}>Premium Roadside 24/7 Assistance</Text>
       </View>
-      <CTAButton text="Book Now" onPress={() => alert('Button Pressed!')} style={styles.button} />
+      <CTAButton text="Book Now" onPress={()=>navigation.navigate('assit')} style={styles.button} />
     </View>
   );
 }

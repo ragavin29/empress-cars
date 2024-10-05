@@ -83,7 +83,7 @@ const Home = ({navigation}) => {
             source={require('../assets/images/wrench.png')}
             style={styles.cardImage} />
           <Text style={{color:'white'}}>EMPRESS</Text>
-          <TouchableOpacity   onPress={()=>navigation.navigate('service')} style={styles.exploreButton}>
+          <TouchableOpacity   onPress={()=>navigation.navigate('Hospitality')} style={styles.exploreButton}>
             <Text style={styles.exploreText}>Explore</Text>
           </TouchableOpacity>
         </View>
