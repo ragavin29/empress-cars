@@ -13,7 +13,6 @@ export default function ServiceScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <Header />
       <SearchBar/>
-
       <ServiceSlider/>
       <Emergency />
       <ServiceCard/>
