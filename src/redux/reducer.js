@@ -9,6 +9,7 @@ export const authSlice=createSlice({
         error:null,
         message:null,
         token:null,
+        cabs: [], 
     },
     reducers:{
         registerRequest: (state) => {
@@ -86,8 +87,24 @@ state.loading=true;
       state.loading=false;
       state.isAuthenticated=true;
       state.error=action.payload;
-    }
+    },
+    loadCabRequest: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    loadCabSuccess: (state, action) => {
+      state.loading = false;
+      state.cabs = action.payload.bookings || [];
+      state.message = "Cabs loaded successfully";
+      console.log("Cabs loaded in reducer:", state.cabs);
+    },
+    loadCabFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.cabs = [];
+      console.error("Cab loading failed:", action.payload);
+    },
 
     }
 })
-export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess}=authSlice.actions;
+export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess}=authSlice.actions;

@@ -1,0 +1,1 @@
+export const BASE_URL="http://35.154.179.0/api/test/user"

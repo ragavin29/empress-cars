@@ -1,8 +1,8 @@
 import axios from "axios";
-import { loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
+import { loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
 import { showToast } from "../utils/showToast";
 const serverUrl = "http://13.60.25.121/api/";
-
+import { BASE_URL } from "../utils/serverUrl";
 export const register = (formData) => async (dispatch) => {
     try {
         dispatch(registerRequest());
@@ -27,9 +27,10 @@ export const register = (formData) => async (dispatch) => {
 };
 export const login = (formData) => async (dispatch) => {
     try {
+      console.log("Login Called")
         dispatch(loginRequest());
       const { data } = await axios.post(
-       'http://13.60.25.121/api/test/auth/login',
+       'http://35.154.179.0/api/test/auth/login',
         formData,
         {
           headers: {
@@ -133,3 +134,38 @@ dispatch(loginSuccess());
 dispatch(logoutFailure(error.response.data.message))
 }
   }
+
+
+  export const getCabs = () => async (dispatch, getState) => {
+    console.log("Calling aany Cabs Avialble"); // Check if this is logged
+    try {
+        dispatch(loadCabRequest());
+        const { token } = getState().auth;
+        // console.log("Token from getState: ", token);
+
+        if (!token) {
+            throw new Error('No authentication token found');
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+
+        const { data } = await axios.get(`${BASE_URL}/cabs/mycabbookings/all`, config);
+        console.log("Fetched Cabs Data: ", data?.bookings);
+
+        if (data.success) {
+          dispatch(loadCabSuccess({ bookings: data.bookings }));
+          // Ensure this matches your API response structure
+        } else {
+            throw new Error(data.message || 'Failed to fetch cab data');
+        }
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || error.message || 'Something went wrong.';
+        dispatch(loadCabFailure(errorMessage));
+        console.log("Error", errorMessage);
+    }
+};

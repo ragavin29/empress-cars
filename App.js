@@ -27,6 +27,7 @@ import VIPservices from './src/Screens/VIPconcierge';
 import PersonalizedEnhancements from './src/Screens/PersonalEnhancements';
 import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
+import BookingScreen from './src/components/Profile/BookingScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -90,13 +91,13 @@ function App() {
   return (
     <NavigationContainer>
     
-      <Stack.Navigator initialRouteName='Splash'>
+      <Stack.Navigator initialRouteName='Login'>
       <Stack.Screen  options={{ headerShown: false }} name="Service" component={ServiceScreen} />
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
 
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
-        {/* <Stack.Screen  options={{ headerShown: false }} name="Home" component={Home} /> */}
-    
+        {/* <Stack.Screen  options={{ headerShown: false }} name="EmpressScreen" component={Home} /> */}
+       
   
    <Stack.Screen  options={{ headerShown: false }} name="Login" component={Login} />
    <Stack.Screen  options={{ headerShown: false }} name="Profile" component={Profile} />
@@ -114,9 +115,14 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="assit" component={Emergengyassit} />
         <Stack.Screen options={{ headerShown: false }} name="vip" component={VIPservices} />
         <Stack.Screen options={{ headerShown: false }} name="personal" component={PersonalizedEnhancements} />
-        <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} />
+        {/* <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} /> */}
         <Stack.Screen options={{ headerShown: false }} name="Hospitality" component={Hospitality} />
         <Stack.Screen options={{ headerShown: false }} name="Hospitalitysub" component={Hospitalitysub} />
+
+
+{/* <-----Booking Screen-----> */}
+<Stack.Screen options={{ headerShown: false }} name="Bookings" component={BookingScreen} />
+
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>

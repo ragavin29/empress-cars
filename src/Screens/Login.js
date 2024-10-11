@@ -64,38 +64,40 @@ const Login = ({ navigation }) => {
       }
     }
   };
+  const handleLogin =  () => {
+    console.log("Hanlde Login Called");
+    dispatch(login({ email, password }));
+    navigation.navigate('Home')
 
-  const handleLogin = async () => {
-    console.log("Handle Login Called");
-    console.log("Email:", email, "Password:", password); // Log email and password
 
-    try {
-        const response = await fetch('http://3.110.210.20/api/test/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
+    // try {
+    //   const response = await fetch('http://13.60.25.121/api/test/auth/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       email: email,
+    //       password: password,
+    //     }),
+    //   });
 
-        // Log the response for debugging
-        console.log("Response status:", response.status);
-        const responseData = await response.json();
-        console.log("Response data:", responseData);
-          navigation.navigate('Home');
-        if (!response.ok) {
-         
-            throw new Error(responseData.message || 'Login failed');
-        }
+    //   if (!response.ok) {
+    //     const errorData = await response.json();
+    //     throw new Error(errorData.message || 'Login failed');
+    //   }
 
-        Alert.alert('Login Success');
-        dispatch(login(responseData));
-        // navigation.navigate('Home');
-    } catch (error) {
-        console.error('Login error:', error);
-        Alert.alert('Login failed', error.message);
-    }
-};
+    //   const data = await response.json();
+    //   Alert.alert('Login Success');
+    
+    //   console.log('Login successful:', data);
+    //   navigation.navigate('Home')
+
+    // } catch (error) {
+    //   console.error('Login error:', error);
+    //   Alert.alert('Login failed', error.message);
+    // }
+  };
 
   const handleGenerateOtp = async () => {
     try {

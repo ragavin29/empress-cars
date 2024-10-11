@@ -24,6 +24,20 @@ dispatch(logout());
 navigation.navigate("Login")
 }
 console.log("User Profile Picture is",user?.profile);
+
+
+const handleNavigation = (key, route) => {
+  console.log(`Attempting to navigate to: ${route}`);
+  if (key === 'logout') {
+    handleLogout();
+  } else {
+    navigation.navigate(route);
+  }
+};
+
+
+
+
 useEffect(() => {
   if (user?.profile) {
     setAvatar(user.profile);
@@ -58,9 +72,10 @@ useEffect(() => {
         
         <View  style={styles.linksContainer}>
           {Object.entries(profileLinks).map(([key, { label, icon: IconComponent, color ,icons:IconComponents,route }]) => (
-            <TouchableOpacity key={key}
-            onPress={()=>key==='logout'? handleLogout() : navigation.navigate(route)}
-            >
+           <TouchableOpacity 
+           key={key}
+           onPress={() => handleNavigation(key, route)}
+         >
               <View style={styles.profileBar}>
                 <IconComponent size={30} color={color} />
                 <Text style={styles.labelText}>{label}</Text>
