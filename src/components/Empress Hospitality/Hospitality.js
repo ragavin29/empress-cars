@@ -57,7 +57,7 @@ const Hospitality = ({ navigation }) => {
                 <View style={styles.offersContainer}>
                     {exclusiveOffers.map((offer, index) => (
                         <View key={index} style={styles.offerCard}>
-                         
+                             <Image source={require('../../assets/images/10-percent.png')} style={styles.discount} />
                             <Text style={styles.offerText}>{offer.name}</Text>
                             <TouchableOpacity style={styles.bookNowButton}>
                                 <Text style={styles.bookNowText}>Book Now</Text>
@@ -111,6 +111,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 20,
     },
+    discount:{
+    marginRight:10,
+    width:responsiveWidth(8),
+    height:responsiveHeight(3.6)
+    },
     card: {
         backgroundColor: '#fff',
         borderWidth: 6,
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     cardImage: {
-        width: responsiveWidth(5),
+        width: responsiveWidth(6),
         height: responsiveHeight(2.9),
         marginBottom: 10,
     },
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     bookNowButton: {
         backgroundColor: '#5856d6',
         paddingVertical: 5,
-       
+        marginLeft:10,
         paddingHorizontal: 20,
         borderRadius: 5,
     },

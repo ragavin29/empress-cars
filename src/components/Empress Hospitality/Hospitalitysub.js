@@ -28,7 +28,9 @@ const Hospitalitysub = ({ navigation }) => {
     
     const incrementAdditionalStaff = () => setAdditionalStaff(additionalStaff + 1);
     const decrementAdditionalStaff = () => additionalStaff > 0 && setAdditionalStaff(additionalStaff - 1);
-
+    const handleSubmit = () => {   
+        navigation.navigate('Payment');
+    };
     return (
         <ScrollView contentContainerStyle={styles.container}>
           
@@ -100,7 +102,14 @@ const Hospitalitysub = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>
+
             </View>
+            <TouchableOpacity
+                style={styles.submitButton}
+                onPress={handleSubmit}
+            >
+                <Text style={styles.submitButtonText}>Submit</Text>
+            </TouchableOpacity>
         </ScrollView>
     );
 };
@@ -181,6 +190,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: responsiveFontSize(2.5),
         marginHorizontal: 10, 
+    },
+    submitButton: {
+        backgroundColor: '#ebc832',
+        paddingVertical: responsiveHeight(1.5),
+        borderRadius: 22,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    submitButtonText: {
+        color: '#000',
+        fontSize: responsiveFontSize(2),
     },
 });
 
