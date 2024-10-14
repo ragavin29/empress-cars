@@ -1,42 +1,43 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import { useNavigation } from '@react-navigation/native';
 
-const TopBar = () => {
-  const navigation = useNavigation();
+const TopBar = ({ onBackPress }) => {
   return (
-    <View style={styles.topContainer}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <Icon name="left" size={24} color="yellow" />
+    <View style={styles.topBarContainer}>
+      <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+      <Icon name="left" size={24} color="yellow" />
       </TouchableOpacity>
-
-      <Text style={styles.headingStyle}>EMPRESS Limos</Text>
+      <Text style={styles.title}>EMPRESS</Text>
     </View>
   );
 };
 
-export default TopBar;
-
 const styles = StyleSheet.create({
-  topContainer: {
+  topBarContainer: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: responsiveWidth(5),
-    marginTop: 14,
-    backgroundColor: 'black', 
-    padding:6
+    backgroundColor: '#333', 
+    height: 50,
+    paddingHorizontal: 10,
+    borderTopLeftRadius: 15, 
+    borderTopRightRadius: 15,
+    
   },
   backButton: {
-
+    padding: 10,
+    paddingLeft: 0,
   },
-  headingStyle: {
-    fontSize: 22,
-    color: '#FFD700',   
-    fontWeight: 'bold', 
-    marginHorizontal:20
-   
+  title: {
+    color: '#ffd700', 
+    fontSize: 18,
+    fontWeight: 'bold',
+    flex: 1, 
+    textAlign: 'right', 
   },
 });
+
+export default TopBar;
+
+
+
