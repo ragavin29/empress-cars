@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
+import { contactFailure, contactRequest, contactSuccess, loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
 import { showToast } from "../utils/showToast";
 const serverUrl = "http://13.60.25.121/api/";
 import { BASE_URL } from "../utils/serverUrl";
@@ -168,4 +168,27 @@ dispatch(logoutFailure(error.response.data.message))
         dispatch(loadCabFailure(errorMessage));
         console.log("Error", errorMessage);
     }
+};
+
+
+export const sendContact = (formData) => async (dispatch) => {
+  try {
+    dispatch(contactRequest());
+    console.log("Contact Request Get Called");
+
+    const { data } = await axios.post('http://35.154.179.0/api/test/user/cabs/contact', formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("Data is", data);
+    dispatch(contactSuccess(data.message));
+    showToast('success', data.message, 'Queries Sent Successfully');
+  } catch (error) {
+    console.log("Erro from cona0",error)
+    console.log("Error", error.response?.data || error.message);
+    dispatch(contactFailure(error.response?.data || error.message)); // Pass the error message properly
+    showToast('error', error.message, 'Could not send Message');
+  }
 };

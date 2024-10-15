@@ -104,7 +104,17 @@ state.loading=true;
       state.cabs = [];
       console.error("Cab loading failed:", action.payload);
     },
-
+    contactRequest: (state) => {
+      state.loading = true;
+    },
+    contactSuccess: (state, action) => {
+      state.loading = false;
+      state.message = action.payload.message;
+    },
+    contactFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     }
 })
-export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess}=authSlice.actions;
+export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess,contactRequest,contactFailure,contactSuccess}=authSlice.actions;

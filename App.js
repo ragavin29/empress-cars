@@ -28,6 +28,7 @@ import PersonalizedEnhancements from './src/Screens/PersonalEnhancements';
 import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 import BookingScreen from './src/components/Profile/BookingScreen';
+import ContactForm from './src/Screens/Contact';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,8 +92,10 @@ function App() {
   return (
     <NavigationContainer>
     
-      <Stack.Navigator initialRouteName='Login'>
+      <Stack.Navigator initialRouteName='Splash'>
+
       <Stack.Screen  options={{ headerShown: false }} name="Service" component={ServiceScreen} />
+      <Stack.Screen  options={{ headerShown: false }} name="Contact" component={ContactForm} />
         <Stack.Screen  options={{ headerShown: false }} name="Splash" component={Splash} />
 
         <Stack.Screen  options={{ headerShown: false }} name="SignUp" component={SignUpScreen} />
