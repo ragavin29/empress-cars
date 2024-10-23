@@ -29,6 +29,8 @@ import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 import BookingScreen from './src/components/Profile/BookingScreen';
 import ContactForm from './src/Screens/Contact';
+import DriverLoginScreen from './src/Screens/DriverLogin';
+import SelectionScreen from './src/Screens/RoleScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -123,6 +125,10 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="Hospitalitysub" component={Hospitalitysub} />
 
 
+
+        {/* //Driver Login */}
+        <Stack.Screen  options={{ headerShown: false }} name="DriverLogin" component={DriverLoginScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="RoleScreen" component={SelectionScreen} />
 {/* <-----Booking Screen-----> */}
 <Stack.Screen options={{ headerShown: false }} name="Bookings" component={BookingScreen} />
 

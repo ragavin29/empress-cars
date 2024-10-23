@@ -115,6 +115,22 @@ state.loading=true;
       state.loading = false;
       state.error = action.payload;
     },
+    driverloginRequest:(state)=>{
+      state.loading=true;
+
+    },
+    driverloginSuccess:(state,action)=>{
+      state.loading=false;
+      state.isAuthenticated=true;
+      state.user=action.payload.user;
+      state.message=action.payload.message;
+      state.token=action.payload.token;
+    },
+    driverloginFailure:(state,action)=>{
+      state.loading=false;
+      state.isAuthenticated=false;
+      state.error=action.payload;
+    },
     }
 })
-export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess,contactRequest,contactFailure,contactSuccess}=authSlice.actions;
+export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess,contactRequest,contactFailure,contactSuccess,driverloginFailure,driverloginRequest,driverloginSuccess}=authSlice.actions;
