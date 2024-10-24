@@ -101,7 +101,7 @@ const Login = ({ navigation }) => {
 
   const handleGenerateOtp = async () => {
     try {
-      const response = await axios.get(`http://13.60.25.121/api/test/auth/generateOTP?email=${resetEmail}`);
+      const response = await axios.get(`http://35.154.179.0/api/test/auth/generateOTP?email=${resetEmail}`);
 
       if (!response.data.success) {
         throw new Error('OTP generation failed');
@@ -120,7 +120,7 @@ const Login = ({ navigation }) => {
 
   const handleVerifyOtp = async () => {
     try {
-      const response = await axios.get(`http://13.60.25.121/api/test/auth/verifyOTP?email=${resetEmail}&OTP=${otp}`);
+      const response = await axios.get(`http://35.154.179.0/api/test/auth/verifyOTP?email=${resetEmail}&OTP=${otp}`);
 
       if (!response.data.success) {
         throw new Error('OTP verification failed');
@@ -142,7 +142,7 @@ const Login = ({ navigation }) => {
       if (!otpVerified) {
         await handleGenerateOtp(); 
       } else {
-        const response = await fetch('http://13.60.25.121/api/test/auth/resetPassword', {
+        const response = await fetch('http://35.154.179.0/api/test/auth/resetPassword', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: responsiveHeight(12),
-    width: responsiveWidth(60),
+    width: responsiveWidth(62),
     resizeMode: 'cover',
     padding: 0,
     flexShrink: 1,

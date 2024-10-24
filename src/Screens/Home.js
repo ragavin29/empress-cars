@@ -97,7 +97,7 @@ const Home = ({navigation}) => {
           <Image
                   source={require('../assets/images/gift.png')}
                   style={styles.giftimg} />
-          <Text style={styles.exclusivetext}>EXCLUSIVE OFFERS!!!</Text>
+          <Text onPress={()=>navigation.navigate('LiveHome')}  style={styles.exclusivetext}>EXCLUSIVE OFFERS!!!</Text>
          </View> 
        </View>
        <View style={styles.newlyadded}>

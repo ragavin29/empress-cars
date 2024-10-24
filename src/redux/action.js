@@ -7,7 +7,7 @@ export const register = (formData) => async (dispatch) => {
     try {
         dispatch(registerRequest());
         const { data } = await axios.post(
-            'http://13.60.25.121/api/test/auth/register',
+            'http://35.154.179.0/api/test/auth/register',
             formData,  
             {
                 headers: {
@@ -63,7 +63,7 @@ export const login = (formData) => async (dispatch) => {
         }
       };
   
-      const { data } = await axios.get(`http://13.60.25.121/api/test/auth/user/${email}`, config);
+      const { data } = await axios.get(`http://35.154.179.0/api/test/auth/user/${email}`, config);
       console.log("Fetched User Data: ", data);
       
       if (data.success) {
@@ -107,7 +107,7 @@ export const login = (formData) => async (dispatch) => {
       }
   
       const { data } = await axios.put(
-        "http://13.60.25.121/api/test/auth/updateuser", 
+        "http://35.154.179.0/api/test/auth/updateuser", 
         formData,
         config
       );

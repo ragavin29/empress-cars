@@ -29,6 +29,10 @@ import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 import BookingScreen from './src/components/Profile/BookingScreen';
 import ContactForm from './src/Screens/Contact';
+import LiveCabsHome from './src/components/Empress Livecabs/LiveCabsHome';
+import UpcomingTrip from './src/components/Empress Livecabs/PreviousTrip';
+import PreviousTrip from './src/components/Empress Livecabs/PreviousTrip';
+import DriverMessages from './src/components/Empress Livecabs/DriverMessages';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -118,10 +122,13 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="assit" component={Emergengyassit} />
         <Stack.Screen options={{ headerShown: false }} name="vip" component={VIPservices} />
         <Stack.Screen options={{ headerShown: false }} name="personal" component={PersonalizedEnhancements} />
-        {/* <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} /> */}
+        <Stack.Screen options={{ headerShown: false }} name="service" component={ServiceScreen} />
         <Stack.Screen options={{ headerShown: false }} name="Hospitality" component={Hospitality} />
         <Stack.Screen options={{ headerShown: false }} name="Hospitalitysub" component={Hospitalitysub} />
-
+        <Stack.Screen options={{ headerShown: false }} name="contact" component={ContactForm} />
+        <Stack.Screen options={{ headerShown: false }} name="LiveHome" component={LiveCabsHome} />
+        <Stack.Screen options={{ headerShown: false }} name="PreviousTrip" component={PreviousTrip} />
+        <Stack.Screen options={{ headerShown: false }} name="Drivermsgs" component={DriverMessages} />
 
 {/* <-----Booking Screen-----> */}
 <Stack.Screen options={{ headerShown: false }} name="Bookings" component={BookingScreen} />

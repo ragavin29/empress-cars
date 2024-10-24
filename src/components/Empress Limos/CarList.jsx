@@ -25,7 +25,7 @@ export default function CarList({ navigation }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://13.235.17.41/api/test/user/cabs/available')
+    fetch('http://35.154.179.0/api/test/user/cabs/available')
       .then(response => response.json())
       .then(data => {
         if (data.success) {

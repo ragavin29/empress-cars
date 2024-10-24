@@ -30,10 +30,14 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    bottom:0,
+    // width:100,
+    alignSelf: 'center',
     backgroundColor: '#333',
-    paddingVertical: 13,
-    gap:8,
+    paddingVertical: 22,
+    paddingHorizontal:19,
+    gap:20,
+    position:'absolute'
   
   },
   item: {

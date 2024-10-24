@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCabs } from '../../redux/action';
+import { responsiveHeight, responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions';
 import Stars from 'react-native-stars';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import COLORS from '../../styles/Colors';
-export default function BookingScreen() {
+export default function BookingScreen({navigation}) {
   const dispatch = useDispatch();
   const { cabs, loading, error } = useSelector((state) => state.auth);
 
@@ -19,9 +20,10 @@ export default function BookingScreen() {
 
   const renderCabItem = ({ item }) => {
     return (
+    
+      
       <View style={styles.cardContainer}>
-        <Text style={styles.mainHeading}>My Bookings</Text>
-        
+   
         {/* Vehicle Details Section */}
         <View style={styles.detailsCard}>
           <Text style={styles.heading}>Vehicle Details</Text>
@@ -64,6 +66,7 @@ export default function BookingScreen() {
           </View>
         </View>
       </View>
+     
     );
   };
   
@@ -79,8 +82,12 @@ export default function BookingScreen() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>My Bookings</Text>
+        
+     <View style={{ flexDirection: 'row', marginHorizontal: 12, marginVertical: 18 }}>
+     <TouchableOpacity onPress={() => navigation.goBack()}>
+     <Image source={require('../../assets/images/left.png')} style={styles.backButton} />
+     </TouchableOpacity>
+     <Text style={styles.headertext}>My bookings</Text>
       </View>
       {cabs?.length === 0 ? (
         <View style={styles.centered}>
@@ -98,10 +105,13 @@ export default function BookingScreen() {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:'#323232'
+  },
   cardContainer: {
     padding: 15,
     margin: 10,
-    backgroundColor: '#000',
+    backgroundColor: 'black',
     borderRadius: 15,
     shadowColor: COLORS.yellow,
     shadowOffset: { width: 0, height: 2 },
@@ -109,6 +119,15 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5,
   },
+  backButton: {
+    height: responsiveHeight(4),
+    width: responsiveWidth(4),
+},
+headertext: {
+    color: '#ebc832',
+    fontSize: responsiveFontSize(2.5),
+    marginHorizontal: 12,
+},
   mainHeading: {
     fontSize: 24,
     fontWeight: 'bold',

@@ -135,7 +135,7 @@ export default function AccountDetails() {
           <Text style={styles.submitButtonText}>Update Profile</Text>
         </TouchableOpacity>
 
-        {loading && <Text style={styles.loadingText}>Updating...</Text>}
+        {/* {loading && <Text style={styles.loadingText}>Updating...</Text>} */}
         {/* {error && <Text style={styles.errorText}>Error: {error}</Text>} */}
       </ScrollView>
     </SafeAreaView>
@@ -191,8 +191,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   textInput: {
-    backgroundColor: '#2c2c2c', 
-    color: 'yellow',            
+    backgroundColor: 'white', 
+    color: 'white',            
     paddingVertical: 8,         
     paddingHorizontal: 10,     
     borderRadius: 10,           

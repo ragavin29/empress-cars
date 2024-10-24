@@ -7,7 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
   KeyboardAvoidingView,
-  Platform,
+  Platform,Image,
   ScrollView,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -48,15 +48,28 @@ const SignUpScreen = ({navigation}) => {
     >
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
+
           <View style={styles.header}>
             <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
               <Ionicons name="chevron-back" size={24} color="#FFD700" />
             </TouchableOpacity>
             <Text style={styles.headerText}>Sign Up Yourself!</Text>
           </View>
-          <View style={styles.carContainer}>
-            <View style={styles.car} />
-          </View>
+  <View style={styles.carContainer}>
+  {/* Smoke dots */}
+  <Image source={require('../assets/images/signupcar.png')} style={styles.carimg} />
+  <View style={styles.dotsContainer}>
+    <View style={styles.dot}></View>
+    <View style={styles.dot}></View>
+    <View style={styles.dot}></View>
+    <View style={styles.dot}></View>
+  </View>
+  {/* Car image */}
+ 
+</View>
+          
+          <View style={styles.horizontalLine} />
+        
           <Text style={styles.title}>Sign Up</Text>
           <View style={styles.inputContainer}>
             <TextInput
@@ -112,7 +125,6 @@ const SignUpScreen = ({navigation}) => {
     </KeyboardAvoidingView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -133,14 +145,37 @@ const styles = StyleSheet.create({
   },
   carContainer: {
     height: responsiveHeight(7),
-    justifyContent: 'center',
-    marginBottom: responsiveHeight(3),
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    position: 'relative',
+    // marginBottom: responsiveHeight(1), 
   },
-  car: {
-    width: responsiveWidth(10),
-    height: responsiveHeight(3),
-    backgroundColor: '#FFF',
-    borderRadius: 5,
+  carimg: {
+    width: responsiveWidth(22),
+    height: responsiveHeight(5),
+    marginTop:5,
+    // position: 'absolute',
+    // right: 0,
+    // bottom: responsiveHeight(0), // Car is positioned just above the line
+  },
+  dotsContainer: {
+    position: 'absolute',
+    right: responsiveWidth(25), // Smoke behind the car
+    bottom: responsiveHeight(2), // Positioned to appear behind the car
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dot: {
+    width: responsiveWidth(2),
+    height: responsiveWidth(2),
+    backgroundColor: '#999',
+    borderRadius: responsiveWidth(1),
+    marginHorizontal: responsiveWidth(1),
+  },
+  horizontalLine: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    marginBottom: responsiveHeight(2), // Adjusted to reduce spacing between car and line
   },
   title: {
     color: '#FFF',
@@ -173,5 +208,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default SignUpScreen;
+export default SignUpScreen

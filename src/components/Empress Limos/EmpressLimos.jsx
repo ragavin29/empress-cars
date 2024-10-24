@@ -67,7 +67,7 @@ export default function EmpressLimos() {
           <Text style={styles.buttonText}>Rental Cars</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity   style={styles.contactButton} >
+      <TouchableOpacity onPress={()=>navigation.navigate('contact')}   style={styles.contactButton} >
   <Text style={styles.contactText}>Contact Us</Text>
 </TouchableOpacity>
 

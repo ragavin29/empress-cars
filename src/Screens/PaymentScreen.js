@@ -27,7 +27,7 @@ const Payment = ({ navigation }) => {
             
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Services')}
+                onPress={() => navigation.navigate('Home')}
             >
                 <Text style={styles.buttonText}>Explore More Services</Text>
             </TouchableOpacity>
