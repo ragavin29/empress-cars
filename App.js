@@ -29,10 +29,6 @@ import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 import BookingScreen from './src/components/Profile/BookingScreen';
 import ContactForm from './src/Screens/Contact';
-import LiveCabsHome from './src/components/Empress DriverSection/LiveCabsHome';
-import UpcomingTrip from './src/components/Empress DriverSection/PreviousTrip';
-import PreviousTrip from './src/components/Empress DriverSection/PreviousTrip';
-import DriverMessages from './src/components/Empress DriverSection/DriverMessages';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -130,6 +126,10 @@ function App() {
         <Stack.Screen options={{ headerShown: false }} name="PreviousTrip" component={PreviousTrip} />
         <Stack.Screen options={{ headerShown: false }} name="Drivermsgs" component={DriverMessages} />
 
+
+        {/* //Driver Login */}
+        <Stack.Screen  options={{ headerShown: false }} name="DriverLogin" component={DriverLoginScreen} />
+        <Stack.Screen  options={{ headerShown: false }} name="RoleScreen" component={SelectionScreen} />
 {/* <-----Booking Screen-----> */}
 <Stack.Screen options={{ headerShown: false }} name="Bookings" component={BookingScreen} />
 

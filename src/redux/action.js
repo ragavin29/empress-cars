@@ -1,5 +1,5 @@
 import axios from "axios";
-import { contactFailure, contactRequest, contactSuccess, loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
+import { contactFailure, contactRequest, contactSuccess, driverloginRequest, driverloginSuccess, loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
 import { showToast } from "../utils/showToast";
 const serverUrl = "http://13.60.25.121/api/";
 import { BASE_URL } from "../utils/serverUrl";
@@ -188,7 +188,31 @@ export const sendContact = (formData) => async (dispatch) => {
   } catch (error) {
     console.log("Erro from cona0",error)
     console.log("Error", error.response?.data || error.message);
-    dispatch(contactFailure(error.response?.data || error.message)); // Pass the error message properly
+    dispatch(contactFailure(error.response?.data || error.message)); 
     showToast('error', error.message, 'Could not send Message');
+  }
+};
+
+
+///Driver Login//
+export const cablogin = (formData) => async (dispatch) => {
+  try {
+    console.log("Login Called")
+      dispatch(driverloginRequest());
+    const { data } = await axios.post(
+     'http://35.154.179.0/api/test/cab-driver/login',
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("Login data is", data);
+    dispatch(driverloginSuccess(data));
+    showToast('success', ' Driver Login Successful', 'Welcome back!');
+  } catch (error) {
+    console.log("Login Error", error.response?.data || error.message);
+    showToast('error', 'Login Failed', error.response?.data?.message || error.message);
   }
 };

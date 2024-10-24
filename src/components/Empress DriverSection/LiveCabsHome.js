@@ -3,26 +3,25 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, Switch, TouchableOpacity, FlatList, Modal, TextInput, Button } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
-// Sample data for upcoming trip requests
+
 const upcomingTrips = [
     { id: '1', passengerName: 'Alice Johnson', pickupLocation: '456 Elm St, City Name',fare:'$600',destination:'Italy'},
     { id: '2', passengerName: 'Bob Brown', pickupLocation: '789 Pine Ave, City Name',fare:'$600',destination:'Italy'},
 ];
 
-// Create a component
 const LiveCabsHome = ({ navigation }) => {
-    const [isOnline, setIsOnline] = useState(false); // online/offline toggle state
-    const [isChatModalVisible, setChatModalVisible] = useState(false); // chat modal visibility state
-    const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false); // success popup visibility state
-    const [tripDetails, setTripDetails] = useState({}); // trip details
-    const [messages, setMessages] = useState([]); // messages state
-    const [newMessage, setNewMessage] = useState(''); // new message input
+    const [isOnline, setIsOnline] = useState(false); 
+    const [isChatModalVisible, setChatModalVisible] = useState(false); 
+    const [isSuccessPopupVisible, setSuccessPopupVisible] = useState(false);
+    const [tripDetails, setTripDetails] = useState({}); 
+    const [messages, setMessages] = useState([]); 
+    const [newMessage, setNewMessage] = useState(''); 
 
     const toggleSwitch = () => setIsOnline(previousState => !previousState);
 
     const handleAcceptTrip = (trip) => {
-        setTripDetails(trip); // Set trip details
-        setSuccessPopupVisible(true); // Show success popup
+        setTripDetails(trip); 
+        setSuccessPopupVisible(true);
     };
 
     const renderUpcomingTrip = ({ item }) => (
@@ -49,7 +48,7 @@ const LiveCabsHome = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
-            {/* Header with back button and title */}
+          
             <View style={styles.headerContainer}>
                 <View style={styles.headerLeft}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -62,7 +61,7 @@ const LiveCabsHome = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            {/* Profile image, name, and ratings */}
+          
             <View style={styles.profileContainer}>
                 <Image source={require('../../assets/images/profile.png')} style={styles.profileImage} />
                 <View style={{ marginLeft: 10 }}>
@@ -80,7 +79,7 @@ const LiveCabsHome = ({ navigation }) => {
                 </View>
             </View>
 
-            {/* Stats card for earnings, trips, etc. */}
+          
             <View style={styles.statsCard}>
                 <View style={styles.statsRow}>
                     <View style={styles.statBox}>
@@ -120,7 +119,7 @@ const LiveCabsHome = ({ navigation }) => {
                     />
                 </View>
 
-                {/* Call, Chat, Phone, and Email buttons */}
+              
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.callButton}>
                         <Image source={require('../../assets/images/phone-call.png')} style={styles.icon} />
@@ -316,7 +315,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         flexDirection: 'row',
         justifyContent:'center',
-        paddingVertical: 8, // Reduced padding for medium size
+        paddingVertical: 8,
         alignItems: 'center',
         marginRight: 10,
     },
@@ -324,19 +323,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#32cd32',
         borderRadius: 10,
-        paddingVertical: 8, // Reduced padding for medium size
+        paddingVertical: 8, 
         alignItems: 'center',
         flexDirection: 'row',
-        justifyContent: 'center', // Centering content
+        justifyContent: 'center', 
     },
     icon: {
         width: 20,
         height: 20,
-        marginRight: 5, // Space between icon and text
+        marginRight: 5, 
     },
     buttonText: {
         color: '#fff',
-        fontSize: responsiveFontSize(2), // Kept font size the same
+        fontSize: responsiveFontSize(2),
     },
     upcomingTripsHeader: {
         color: '#ebc832',
@@ -419,14 +418,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     emailIconContainer: {
-        // You can adjust the position and margin as needed
+       
         marginLeft: 'auto',
     },
     
     emailicon:{
         height: 30,
         width: 30,
-        // marginLeft:'auto'
+       
     },
     chatMessage: {
         fontSize: responsiveFontSize(2),

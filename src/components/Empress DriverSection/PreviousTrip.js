@@ -3,14 +3,14 @@ import React, { Component, useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
-// Sample data for previous trips
+
 const previousTrips = [
     { id: '1', date: '2024-10-10', pickup: '123 Main St', destination: '456 Elm St', fare: '₹300' },
     { id: '2', date: '2024-10-09', pickup: '789 Pine Ave', destination: '321 Oak Dr', fare: '₹450' },
     { id: '3', date: '2024-10-08', pickup: '654 Maple St', destination: '987 Cedar Blvd', fare: '₹275' },
 ];
 
-// create a component
+
 const PreviousTrip = ({ navigation }) => {
     const renderTrip = ({ item }) => (
         <View style={styles.tripCard}>
@@ -23,7 +23,7 @@ const PreviousTrip = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* Header with back button and title */}
+           
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -33,7 +33,7 @@ const PreviousTrip = ({ navigation }) => {
                 </View>
             </View>
 
-            {/* List of previous trips */}
+           
             <FlatList
                 data={previousTrips}
                 keyExtractor={item => item.id}
@@ -44,7 +44,7 @@ const PreviousTrip = ({ navigation }) => {
     );
 };
 
-// define your styles
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -86,5 +86,5 @@ const styles = StyleSheet.create({
     },
 });
 
-//make this component available to the app
+
 export default PreviousTrip;

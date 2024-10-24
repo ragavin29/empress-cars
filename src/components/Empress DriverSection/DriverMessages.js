@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
-// Sample data for messages
+
 const messagesData = [
     { id: '1', message: 'Trip Delayed: Passenger: Jane Smith has reported that you were late by 5 mins' },
     { id: '2', message: 'Feedback: Passenger: Bob Brown gave you 5 stars for the trip' },
@@ -28,7 +28,7 @@ const DriverMessages = ({ navigation }) => {
                 </View>
             </View>
 
-            {/* List of messages */}
+           
             <FlatList
                 data={messagesData}
                 keyExtractor={item => item.id}
@@ -39,7 +39,7 @@ const DriverMessages = ({ navigation }) => {
     );
 };
 
-// Define your styles
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -70,5 +70,5 @@ const styles = StyleSheet.create({
     },
 });
 
-// Make this component available to the app
+
 export default DriverMessages;
