@@ -1,5 +1,5 @@
 import axios from "axios";
-import { contactFailure, contactRequest, contactSuccess, driverloginRequest, driverloginSuccess, loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
+import { bookCabFailure, bookCabRequest, bookCabSuccess, contactFailure, contactRequest, contactSuccess, driverloginRequest, driverloginSuccess, loadCabFailure, loadCabRequest, loadCabSuccess, loadUserFailure, loadUserRequest, loadUserSuccess, loginRequest, loginSuccess, logoutFailure, registerFailure, registerRequest, registerSuccess, updateUserFailure, updateUserRequest, updateUserSuccess } from "./reducer";
 import { showToast } from "../utils/showToast";
 const serverUrl = "http://13.60.25.121/api/";
 import { BASE_URL } from "../utils/serverUrl";
@@ -214,5 +214,42 @@ export const cablogin = (formData) => async (dispatch) => {
   } catch (error) {
     console.log("Login Error", error.response?.data || error.message);
     showToast('error', 'Login Failed', error.response?.data?.message || error.message);
+  }
+};
+
+
+export const bookCab = (bookingData) => async (dispatch,getState) => {
+  try {
+    dispatch(bookCabRequest());
+    const { token } = getState().auth;
+    console.log("Token from booking cab in : ", token);
+
+    if (!token) {
+        throw new Error('No authentication token found');
+    }
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    };
+
+
+    const { data } = await axios.post(
+      'http://35.154.179.0/api/test/user/cabs/bookcab', 
+      bookingData,
+      config
+    );
+console.log("Booking Success Data is",data);
+    dispatch(bookCabSuccess(data));
+  } catch (error) {
+    console.log("Error from Booking Cab is",error);
+    console.log("Erro anothe", error.response?.data?.message );
+    dispatch(
+     bookCabFailure(
+        error.response?.data?.message || 'Something went wrong'
+      )
+    );
   }
 };

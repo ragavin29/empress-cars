@@ -18,7 +18,11 @@ const CarItem = ({ car, isFavorite, onToggleFavorite, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function CarList({ navigation }) {
+export default function CarList({ route,navigation }) {
+  const { pickupLocation, dropoffLocation,  dropoffDate,  dropoffTime, pickupDate, pickupTime, passangersCount } = route.params || {};
+
+  // Now you have `passengersCount` available in CarList
+  console.log('Total Passengers:', passangersCount);
   const [search, setSearch] = useState('');
   const [favorites, setFavorites] = useState({});
   const [carData, setCarData] = useState([]);
@@ -77,13 +81,25 @@ export default function CarList({ navigation }) {
             ))}
           </View>
           {filteredCars.map(car => (
-            <CarItem
-              key={car._id}
-              car={car}
-              isFavorite={favorites[car._id]}
-              onToggleFavorite={toggleFavorite}
-              onPress={() => navigation.navigate('Cars', { car })}
-            />
+      <CarItem
+      key={car._id}
+      car={car}
+      isFavorite={favorites[car._id]}
+      onToggleFavorite={toggleFavorite}
+      onPress={() => navigation.navigate('Cars', {
+        carId: car._id, 
+        car,            
+        pickupLocation,
+        pickupDate,
+        pickupTime,
+        passangersCount,
+        dropoffLocation,
+        dropoffDate,
+        dropoffTime,
+      })}
+    />
+    
+     
           ))}
         </ScrollView>
       </SafeAreaView>

@@ -29,6 +29,11 @@ import Hospitality from './src/components/Empress Hospitality/Hospitality';
 import Hospitalitysub from './src/components/Empress Hospitality/Hospitalitysub';
 import BookingScreen from './src/components/Profile/BookingScreen';
 import ContactForm from './src/Screens/Contact';
+import DriverLoginScreen from './src/Screens/DriverLogin';
+import SelectionScreen from './src/Screens/RoleScreen';
+import DriverMessages from './src/components/Empress DriverSection/DriverMessages';
+import PreviousTrip from './src/components/Empress DriverSection/PreviousTrip';
+import LiveCabsHome from './src/components/Empress DriverSection/LiveCabsHome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

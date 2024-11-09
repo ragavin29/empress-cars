@@ -9,6 +9,10 @@ export const authSlice=createSlice({
         error:null,
         message:null,
         token:null,
+        bookings: [],
+       bookingLoading: false,
+       bookingError: null,
+      bookingMessage: null,
         cabs: [], 
     },
     reducers:{
@@ -131,6 +135,26 @@ state.loading=true;
       state.isAuthenticated=false;
       state.error=action.payload;
     },
+      // Booking reducers
+      bookCabRequest: (state) => {
+        state.bookingLoading = true;
+        state.bookingError = null;
+      },
+      bookCabSuccess: (state, action) => {
+        state.bookingLoading = false;
+        state.bookings.push(action.payload.booking);
+        state.bookingMessage = "Booking successful!";
+      },
+      bookCabFailure: (state, action) => {
+        state.bookingLoading = false;
+        state.bookingError = action.payload;
+      },
+      clearBookingError: (state) => {
+        state.bookingError = null;
+      },
+      clearBookingMessage: (state) => {
+        state.bookingMessage = null;
+      }
     }
 })
-export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess,contactRequest,contactFailure,contactSuccess,driverloginFailure,driverloginRequest,driverloginSuccess}=authSlice.actions;
+export const {registerSuccess,registerRequest,registerFailure,updateUserFailure,updateUserRequest,updateUserSuccess,clearError,clearMessage,loginFailure,loginRequest,loginSuccess,loadUserSuccess,loadUserFailure,loadUserRequest,logoutFailure,logoutRequest,logoutSuccess,loadCabFailure,loadCabRequest,loadCabSuccess,contactRequest,contactFailure,contactSuccess,driverloginFailure,driverloginRequest,driverloginSuccess,bookCabRequest,bookCabFailure,bookCabSuccess,clearBookingError,clearBookingMessage}=authSlice.actions;

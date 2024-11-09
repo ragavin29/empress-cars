@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveWidth, responsiveHeight ,responsiveFontSize} from 'react-native-responsive-dimensions';
+import { useDispatch, useSelector } from 'react-redux';
+import { bookCab } from '../../../redux/action';
 const CarDetailsScreen = ({ route ,navigation}) => {
-  const { car } = route.params;
-  const [quantity, setQuantity] = useState(1);
+  // const { car } = route.params;
+  const { carId, car,passangersCount ,  dropoffTime, dropoffLocation, dropoffDate,pickupLocation, pickupDate, pickupTime } = route.params; 
 
+  // Now you have `passengersCount` available in CarList
+  console.log('Total Passengers of car detaiks:',passangersCount);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch=useDispatch();
+
+
+  const { bookingLoading, bookingError, bookingMessage } = useSelector((state) => state.auth);
+  console.log("Booking auh",bookingMessage);
+  
+  const { user } = useSelector((state) => state.auth);
+ console.log("User from auth is booking compo is",user);
+useEffect(()=>{
+  // if(bookingError){
+  //   Alert.alert('Error',bookingError);
+  // }
+  if(bookingMessage){
+    Alert.alert('success',bookingMessage);
+  }
+},[bookingError,bookingMessage])
   const {
     vehicleImages,
     make,
@@ -24,8 +45,33 @@ const CarDetailsScreen = ({ route ,navigation}) => {
     rentPerKm,
     contactInfo
   } = car;
+  const rentHandler = () => {
+    const bookingData = {
+      vehicle: carId, 
+      quantity,
+      passangersCount ,
+      totalAmount: car.rentPerKm * quantity,
+      pickupLocation,
+      pickupDate,
+      pickupTime,
+      dropoffLocation,
+      dropoffDate,
+      dropoffTime,
+    };
+  
+    dispatch(bookCab(bookingData));
+    navigation.navigate('CarList'); 
+  };
+  
+
+  const handleRentPress = () => {
+    rentHandler();
+    navigation.navigate('book', { car }); 
+  };
 
   const totalCost = basePrice * quantity;
+ 
+
 
   return (
     <View style={styles.card}>
@@ -85,7 +131,7 @@ const CarDetailsScreen = ({ route ,navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.rentButton}  onPress={() => navigation.navigate('book', { car })}>
+        <TouchableOpacity style={styles.rentButton} onPress={handleRentPress}>
           <Text style={styles.rentButtonText}>Rent Now</Text>
         </TouchableOpacity>
       </View>

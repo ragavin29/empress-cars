@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image,StyleSheet, ScrollView, Modal, Button } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { useDispatch, useSelector } from 'react-redux';
 const RideBookingScreen= () => {
+  const pickupLocation = '123 Main St, Cityville';
+  const dropoffLocation = '123 Main St, Cityville';
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
+  const [dropoffDate, setDropoffDate] = useState(null);
+  const [dropoffTime, setDropoffTime] = useState(null);
+  // const [dropoffLocation, setDropoffLocation] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+  const [isDropoffDatePickerVisible, setDropoffDatePickerVisibility] = useState(false);
+  const [isDropoffTimePickerVisible, setDropoffTimePickerVisibility] = useState(false);
   const [guestModalVisible, setGuestModalVisible] = useState(false);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [pets, setPets] = useState(1);
+  const dispatch=useDispatch();
+//Calling functions//
+
+
+
+
+
+
 const navigation=useNavigation();
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -39,16 +55,56 @@ const navigation=useNavigation();
     setTime(selectedTime);
     hideTimePicker();
   };
+  //drop
+  const showDropoffDatePicker = () => {
+    setDropoffDatePickerVisibility(true);
+  };
+
+  const hideDropoffDatePicker = () => {
+    setDropoffDatePickerVisibility(false);
+  };
+
+  const handleConfirmDropoffDate = (selectedDate) => {
+    setDropoffDate(selectedDate);
+    hideDropoffDatePicker();
+  };
+
+  const showDropoffTimePicker = () => {
+    setDropoffTimePickerVisibility(true);
+  };
+
+  const hideDropoffTimePicker = () => {
+    setDropoffTimePickerVisibility(false);
+  };
+
+  const handleConfirmDropoffTime = (selectedTime) => {
+    setDropoffTime(selectedTime);
+    hideDropoffTimePicker();
+  };
 
   const toggleGuestModal = () => {
     setGuestModalVisible(!guestModalVisible);
   };
   const handlePress = () => {
-    toggleGuestModal(); 
-    navigation.navigate('CarList'); 
+    toggleGuestModal(); // Closes the modal
+    const  passangersCount = adults + children + pets; // Calculate total passengers
+    console.log('Total Passengers: from handle press',passangersCount); 
+    navigation.navigate('CarList', {
+      pickupLocation,
+      pickupDate: date,
+      pickupTime: time,
+      dropoffLocation,
+      dropoffDate,
+      dropoffTime,
+      passangersCount, // Pass total passengers count
+    });
   };
+  
+  // console.log('Total Passengers: Afterhandle press',passangersCount); 
+
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
       {/* Map Icon & Pickup Section */}
       <View style={styles.pickupSection}>
       <View style={{flexDirection:'row'}}>
@@ -102,7 +158,30 @@ const navigation=useNavigation();
         onConfirm={handleConfirmTime}
         onCancel={hideTimePicker}
       />
+{/* //Drop location// */}
+<TouchableOpacity onPress={showDropoffDatePicker} style={styles.dateButton}>
+        <Text style={styles.label}>Drop-off Date</Text>
+        <Text style={styles.subLabel}>{dropoffDate ? dropoffDate.toDateString() : "Select Date"}</Text>
+      </TouchableOpacity>
 
+      <DateTimePickerModal
+        isVisible={isDropoffDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirmDropoffDate}
+        onCancel={hideDropoffDatePicker}
+      />
+
+      <TouchableOpacity onPress={showDropoffTimePicker} style={styles.dateButton}>
+        <Text style={styles.label}>Drop-off Time</Text>
+        <Text style={styles.subLabel}>{dropoffTime ? dropoffTime.toLocaleTimeString() : "Select Time"}</Text>
+      </TouchableOpacity>
+
+      <DateTimePickerModal
+        isVisible={isDropoffTimePickerVisible}
+        mode="time"
+        onConfirm={handleConfirmDropoffTime}
+        onCancel={hideDropoffTimePicker}
+      />
 
       <TouchableOpacity onPress={toggleGuestModal} style={styles.guestButton}>
         <Text style={styles.label}>Guests</Text>
@@ -168,7 +247,7 @@ const navigation=useNavigation();
 
 
 
-      <TouchableOpacity style={styles.confirmButton}>
+      <TouchableOpacity style={styles.confirmButton} >
         <Text style={styles.confirmText}>Confirm</Text>
       </TouchableOpacity>
     </ScrollView>
